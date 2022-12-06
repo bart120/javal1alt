@@ -42,12 +42,10 @@ public class App {
         c.setNumero(scan.nextLine());
         System.out.println("Saisir le mail:");
         c.setMail(scan.nextLine());
-
-        SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
         do {
             try {
                 System.out.println("Saisir la date de naissance:");
-                c.setDateNaissance(dtf.parse(scan.nextLine()));
+                c.setDateNaissance(scan.nextLine());
                 break;
             } catch (ParseException e) {
                 System.out.println("Error, try again!");

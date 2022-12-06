@@ -2,6 +2,8 @@ package model;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Contact {
@@ -47,8 +49,9 @@ public class Contact {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
+    public void setDateNaissance(String dateNaissance) throws ParseException {
+        SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
+        this.dateNaissance = dtf.parse(dateNaissance);
     }
 
     public void enregistrer() {
