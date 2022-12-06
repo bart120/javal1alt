@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import model.Contact;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -10,6 +12,7 @@ public class App {
         while (true) {
             switch (choix) {
                 case "1":
+                    ajouterContact();
                     break;
                 case "2":
                     break;
@@ -23,6 +26,23 @@ public class App {
             choix = scan.nextLine();
         }
 
+    }
+
+    private static void ajouterContact() {
+        Scanner scan = new Scanner(System.in);
+        Contact c = new Contact();
+        System.out.println("Saisir le nom:");
+        c.setNom(scan.nextLine());
+        System.out.println("Saisir le prénom:");
+        c.setPrenom(scan.nextLine());
+        System.out.println("Saisir le téléphone:");
+        c.setNumero(scan.nextLine());
+        System.out.println("Saisir le mail:");
+        c.setMail(scan.nextLine());
+        System.out.println("Saisir la date de naissance:");
+        c.setDateNaissance(scan.nextLine());
+
+        System.out.println(c.toString());
     }
 
     public static void afficherMenu() {
