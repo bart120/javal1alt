@@ -43,7 +43,7 @@ public class App {
         System.out.println("Saisir le mail:");
         c.setMail(scan.nextLine());
 
-        SimpleDateFormat dtf = new SimpleDateFormat();
+        SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
         do {
             try {
                 System.out.println("Saisir la date de naissance:");

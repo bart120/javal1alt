@@ -2,13 +2,14 @@ package model;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public class Contact {
     private String nom;
     private String prenom;
     private String numero;
     private String mail;
-    private String dateNaissance;
+    private Date dateNaissance;
 
     public String getNom() {
         return nom;
@@ -42,11 +43,11 @@ public class Contact {
         this.mail = mail;
     }
 
-    public String getDateNaissance() {
+    public Date getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) {
+    public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
