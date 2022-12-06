@@ -1,3 +1,6 @@
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,8 +42,17 @@ public class App {
         c.setNumero(scan.nextLine());
         System.out.println("Saisir le mail:");
         c.setMail(scan.nextLine());
-        System.out.println("Saisir la date de naissance:");
-        c.setDateNaissance(scan.nextLine());
+
+        SimpleDateFormat dtf = new SimpleDateFormat();
+        do {
+            try {
+                System.out.println("Saisir la date de naissance:");
+                c.setDateNaissance(dtf.parse(scan.nextLine()));
+                break;
+            } catch (ParseException e) {
+                System.out.println("Error, try again!");
+            }
+        } while (true);
 
         System.out.println(c.toString());
 
