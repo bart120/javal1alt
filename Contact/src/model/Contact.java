@@ -1,5 +1,8 @@
 package model;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Contact {
     private String nom;
     private String prenom;
@@ -45,6 +48,32 @@ public class Contact {
 
     public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public void enregistrer() {
+        try {
+            FileWriter writer = new FileWriter("contacts.csv", true);
+            writer.write(this.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        // return this.getNom() + ";" + this.getPrenom();*
+        StringBuilder build = new StringBuilder();
+        build.append(getNom());
+        build.append(";");
+        build.append(getPrenom());
+        build.append(";");
+        build.append(getMail());
+        build.append(";");
+        build.append(getNumero());
+        build.append(";");
+        build.append(getDateNaissance());
+        return build.toString();
     }
 
 }

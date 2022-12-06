@@ -43,6 +43,8 @@ public class App {
         c.setDateNaissance(scan.nextLine());
 
         System.out.println(c.toString());
+
+        c.enregistrer();
     }
 
     public static void afficherMenu() {
