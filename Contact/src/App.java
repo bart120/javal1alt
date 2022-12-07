@@ -1,6 +1,4 @@
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,53 +6,77 @@ import model.Contact;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
         afficherMenu();
         Scanner scan = new Scanner(System.in);
-        String choix = scan.nextLine();
-        while (true) {
-            switch (choix) {
-                case "1":
-                    ajouterContact();
-                    break;
-                case "2":
-                    break;
-                case "q":
-                    return;
-                default:
-                    System.out.println("Boulet!!!!");
-                    break;
+        try {
+            String choix = scan.nextLine();
+            while (true) {
+                switch (choix) {
+                    case "1":
+                        ajouterContact();
+                        break;
+                    case "2":
+                        break;
+                    case "q":
+                        return;
+                    default:
+                        System.out.println("Boulet!!!!");
+                        break;
+                }
+                afficherMenu();
+                choix = scan.nextLine();
             }
-            afficherMenu();
-            choix = scan.nextLine();
+        } finally {
+            scan.close();
         }
 
     }
 
     private static void ajouterContact() {
         Scanner scan = new Scanner(System.in);
-        Contact c = new Contact();
-        System.out.println("Saisir le nom:");
-        c.setNom(scan.nextLine());
-        System.out.println("Saisir le prénom:");
-        c.setPrenom(scan.nextLine());
-        System.out.println("Saisir le téléphone:");
-        c.setNumero(scan.nextLine());
-        System.out.println("Saisir le mail:");
-        c.setMail(scan.nextLine());
-        do {
-            try {
-                System.out.println("Saisir la date de naissance:");
-                c.setDateNaissance(scan.nextLine());
-                break;
-            } catch (ParseException e) {
-                System.out.println("Error, try again!");
-            }
-        } while (true);
+        try {
+            Contact c = new Contact();
+            System.out.println("Saisir le nom:");
+            c.setNom(scan.nextLine());
+            System.out.println("Saisir le prénom:");
+            c.setPrenom(scan.nextLine());
 
-        System.out.println(c.toString());
+            do {
+                try {
+                    System.out.println("Saisir le téléphone:");
+                    c.setNumero(scan.nextLine());
+                    break;
+                } catch (ParseException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (true);
 
-        c.enregistrer();
+            do {
+                try {
+                    System.out.println("Saisir le mail:");
+                    c.setMail(scan.nextLine());
+                    break;
+                } catch (ParseException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (true);
+
+            do {
+                try {
+                    System.out.println("Saisir la date de naissance:");
+                    c.setDateNaissance(scan.nextLine());
+                    break;
+                } catch (ParseException e) {
+                    System.out.println("Error, try again!");
+                }
+            } while (true);
+
+            System.out.println(c.toString());
+
+            c.enregistrer();
+        } finally {
+            scan.close();
+        }
     }
 
     public static void afficherMenu() {
