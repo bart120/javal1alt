@@ -10,10 +10,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Contact {
+public class Contact implements Comparable<Contact> {
     public static final String SEPARATEUR = ";";
 
     private String nom;
@@ -95,6 +96,18 @@ public class Contact {
         }
     }
 
+    public static void enregistrerTous(List<Contact> contacts) throws IOException {
+
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", false)));
+        try {
+            for (Contact contact : contacts) {
+                pw.println(contact.toString());
+            }
+        } finally {
+            pw.close();
+        }
+    }
+
     public static ArrayList<Contact> lister() throws IOException {
         ArrayList<Contact> list = new ArrayList<>();
         BufferedReader buf = new BufferedReader(new FileReader("contacts.csv"));
@@ -136,6 +149,14 @@ public class Contact {
         SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
         build.append(dtf.format(getDateNaissance()));
         return build.toString();
+    }
+
+    @Override
+    public int compareTo(Contact o) {
+        if (this.getNom().equals(o.getNom())) {
+            return this.getPrenom().compareTo(o.getPrenom());
+        }
+        return this.getNom().compareTo(o.getNom());
     }
 
 }
