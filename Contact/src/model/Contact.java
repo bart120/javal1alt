@@ -1,11 +1,9 @@
 package model;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,23 +74,13 @@ public class Contact implements Comparable<Contact> {
         this.dateNaissance = dtf.parse(dateNaissance);
     }
 
-    public void enregistrer() throws IOException {
-        /*
-         * try {
-         * FileWriter writer = new FileWriter("contacts.csv", true);
-         * writer.write(this.toString());
-         * writer.close();
-         * } catch (IOException e) {
-         * e.printStackTrace();
-         * }
-         */
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", true)));
+    public void enregistrer() {
         try {
-
-            pw.println(this.toString());
-
-        } finally {
-            pw.close();
+            FileWriter writer = new FileWriter("contacts.csv", true);
+            writer.write(this.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
