@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class App {
                     ajouterContact();
                     break;
                 case "2":
+                    listerContact();
                     break;
                 case "q":
                     scan.close();
@@ -26,6 +28,20 @@ public class App {
             }
             afficherMenu();
         }
+    }
+
+    private static void listerContact() {
+        // Contact c = new Contact();
+        try {
+            ArrayList<Contact> liste = Contact.lister();
+
+            for (Contact contact : liste) {
+                System.out.println(contact.getPrenom() + " " + contact.getNom());
+            }
+        } catch (IOException e) {
+            System.out.println("Erreur avec le fichier");
+        }
+
     }
 
     private static void ajouterContact() {
