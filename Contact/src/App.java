@@ -82,7 +82,12 @@ public class App {
             }
         } while (true);
 
-        c.enregistrer();
+        try {
+            c.enregistrer();
+            System.out.println("Contact enregistré.");
+        } catch (IOException e) {
+            System.out.println("Erreur à l'enregistrement");
+        }
 
     }
 
